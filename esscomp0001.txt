@@ -1,0 +1,1216 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1deb3
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost:3306
+-- Generation Time: Jun 27, 2025 at 12:00 PM
+-- Server version: 8.0.42-0ubuntu0.24.04.1
+-- PHP Version: 8.3.6
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `ess_comp001-3530303073c2`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `HR_Evaluations`
+--
+
+CREATE TABLE `HR_Evaluations` (
+  `ID` bigint NOT NULL,
+  `Evaluation_ID` varchar(10) NOT NULL,
+  `Evaluation_Description` text,
+  `ValidityStart` date DEFAULT NULL,
+  `ValidityEnd` date DEFAULT NULL,
+  `Evaluator_Instructions` text,
+  `Evaluatee` text,
+  `Evaluator` text,
+  `PassingMark` decimal(18,2) DEFAULT NULL,
+  `isArchived` tinyint(1) DEFAULT NULL,
+  `isExecuted` tinyint(1) DEFAULT NULL,
+  `RG_File_Type` varchar(255) DEFAULT NULL,
+  `RG_File_Data` longblob,
+  `RG_File_Size` varchar(20) DEFAULT NULL,
+  `AG_File_Type` varchar(255) DEFAULT NULL,
+  `AG_File_Data` longblob,
+  `AG_File_Size` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `HR_Evaluations_ResultAction`
+--
+
+CREATE TABLE `HR_Evaluations_ResultAction` (
+  `ID` bigint NOT NULL,
+  `Evaluation_ID` varchar(10) NOT NULL,
+  `Evaluatee_ID` varchar(10) NOT NULL,
+  `AverageRating` decimal(18,2) DEFAULT NULL,
+  `Action` varchar(25) DEFAULT NULL,
+  `isFinalized` tinyint(1) DEFAULT NULL,
+  `Created_Date` datetime DEFAULT NULL,
+  `CreateByID` varchar(7) DEFAULT NULL,
+  `CreatedByName` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `HR_Evaluation_Questions`
+--
+
+CREATE TABLE `HR_Evaluation_Questions` (
+  `ID` bigint NOT NULL,
+  `Evaluation_ID` varchar(10) NOT NULL,
+  `Question_ID` varchar(11) NOT NULL,
+  `Question_Type` char(1) DEFAULT NULL,
+  `Description` text,
+  `AnswerType` char(1) DEFAULT NULL,
+  `AnswerOption1` varchar(20) DEFAULT NULL,
+  `AnswerOption2` varchar(20) DEFAULT NULL,
+  `AnswerOption3` varchar(20) DEFAULT NULL,
+  `AnswerOption4` varchar(20) DEFAULT NULL,
+  `AnswerOption5` varchar(20) DEFAULT NULL,
+  `AnswerOption6` varchar(20) DEFAULT NULL,
+  `AnswerOption7` varchar(20) DEFAULT NULL,
+  `AnswerOption8` varchar(20) DEFAULT NULL,
+  `AnswerOption9` varchar(20) DEFAULT NULL,
+  `AnswerOption10` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `HR_Evaluation_Tandem`
+--
+
+CREATE TABLE `HR_Evaluation_Tandem` (
+  `ID` bigint NOT NULL,
+  `Evaluation_ID` varchar(10) NOT NULL,
+  `Evaluatee` varchar(10) NOT NULL,
+  `Evaluator` varchar(10) NOT NULL,
+  `AppraisalType` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `HR_Evaluator`
+--
+
+CREATE TABLE `HR_Evaluator` (
+  `ID` bigint NOT NULL,
+  `Evaluation_ID` varchar(10) NOT NULL,
+  `Evaluatee_ID` varchar(10) NOT NULL,
+  `Evaluator_ID` varchar(10) NOT NULL,
+  `Evaluation_Date` datetime DEFAULT NULL,
+  `Evaluatee_JobTitle` varchar(100) DEFAULT NULL,
+  `Evaluatee_Branch` varchar(10) DEFAULT NULL,
+  `Evaluator_Job_Title` varchar(100) DEFAULT NULL,
+  `Evaluator_Branch` varchar(10) DEFAULT NULL,
+  `Appraisal_Type` varchar(50) DEFAULT NULL,
+  `KeyObjectives_1` text,
+  `KeyObjectives_2` text,
+  `KeyObjectives_3` text,
+  `KeyObjectives_4` text,
+  `KeyObjectives_5` text,
+  `KeyObjectives_6` text,
+  `KeyObjectives_7` text,
+  `KeyObjectives_8` text,
+  `KeyObjectives_9` text,
+  `KeyObjectives_10` text,
+  `EvaluatorComment` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `HR_Evaluator_Answers`
+--
+
+CREATE TABLE `HR_Evaluator_Answers` (
+  `ID` bigint NOT NULL,
+  `Evaluation_ID` varchar(10) NOT NULL,
+  `Evaluatee_ID` varchar(10) NOT NULL,
+  `Evaluator_ID` varchar(10) NOT NULL,
+  `Question_ID` varchar(11) NOT NULL,
+  `Answer` int DEFAULT NULL,
+  `Remarks` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `HR_Payslip`
+--
+
+CREATE TABLE `HR_Payslip` (
+  `TransID` bigint NOT NULL,
+  `IDNo` varchar(7) DEFAULT NULL,
+  `PayDate` varchar(12) DEFAULT NULL,
+  `File_Type` varchar(255) DEFAULT NULL,
+  `File_Data` longblob,
+  `File_Size` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `leave_details`
+--
+
+CREATE TABLE `leave_details` (
+  `id` int NOT NULL,
+  `leave_request_id` int NOT NULL,
+  `eformno` int NOT NULL,
+  `leave_date` date DEFAULT NULL,
+  `leave_value` decimal(2,1) NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `leave_value_approved` decimal(2,1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `leave_head`
+--
+
+CREATE TABLE `leave_head` (
+  `request_id` int NOT NULL,
+  `emp_id` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `leave_type` enum('Sick','Vacation','Emergency','Others') NOT NULL,
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL,
+  `reason` varchar(255) DEFAULT NULL,
+  `status` enum('Draft','Pending','Approved','Rejected') DEFAULT NULL,
+  `eformno` int NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `leave_credits`
+--
+
+CREATE TABLE `leave_credits` (
+  `credit_id` int NOT NULL,
+  `emp_id` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `leave_type` enum('Sick','Vacation','Emergency','Others','Maternity','Paternity','Bereavement','Service Incentive') NOT NULL,
+  `total_credits` decimal(4,1) NOT NULL DEFAULT '0.0',
+  `used_credits` decimal(4,1) NOT NULL DEFAULT '0.0',
+  `remaining_credits` decimal(4,1) GENERATED ALWAYS AS ((`total_credits` - `used_credits`)) STORED,
+  `credit_year` year NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_by` varchar(100) DEFAULT NULL,
+  `modified_by` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `overtime`
+--
+
+CREATE TABLE `overtime` (
+  `request_id` int NOT NULL,
+  `emp_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `ot_date` date NOT NULL,
+  `start_time` time NOT NULL,
+  `st_overMidnight` tinyint(1) NOT NULL,
+  `end_time` time NOT NULL,
+  `ed_overMidnight` tinyint(1) NOT NULL,
+  `reason` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `status` enum('Draft','Pending','Approved','Rejected') DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `remote`
+--
+
+CREATE TABLE `remote` (
+  `request_id` int NOT NULL,
+  `emp_id` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL,
+  `reason` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` enum('Draft','Pending','Approved','Rejected') DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `requests`
+--
+
+CREATE TABLE `requests` (
+  `request_id` int NOT NULL,
+  `emp_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `request_type` enum('overtime','remote','leave') NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `time_logs`
+--
+
+CREATE TABLE `time_logs` (
+  `log_id` int NOT NULL,
+  `emp_id` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `log_type` enum('timeIn','timeOut') NOT NULL,
+  `log_time` time NOT NULL,
+  `log_pic` longblob NOT NULL,
+  `log_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `attendance_summary`
+--
+
+CREATE TABLE `attendance_summary` (
+  `summary_id` int NOT NULL,
+  `emp_id` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `attendance_date` date NOT NULL,
+  `time_in` time DEFAULT NULL,
+  `time_out` time DEFAULT NULL,
+  `break_start` time DEFAULT NULL,
+  `break_end` time DEFAULT NULL,
+  `total_hours` decimal(4,2) DEFAULT NULL,
+  `overtime_hours` decimal(4,2) DEFAULT '0.00',
+  `late_minutes` int DEFAULT '0',
+  `undertime_minutes` int DEFAULT '0',
+  `status` enum('Present','Absent','Late','Half-Day','Holiday','Weekend') DEFAULT 'Present',
+  `remarks` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `employment_history`
+--
+
+CREATE TABLE `employment_history` (
+  `history_id` int NOT NULL,
+  `emp_id` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `position_title` varchar(100) NOT NULL,
+  `department` varchar(100) DEFAULT NULL,
+  `branch` varchar(50) DEFAULT NULL,
+  `employment_type` enum('Regular','Contractual','Part-time','Probationary','Intern') DEFAULT 'Regular',
+  `start_date` date NOT NULL,
+  `end_date` date DEFAULT NULL,
+  `basic_salary` decimal(12,2) DEFAULT NULL,
+  `salary_grade` varchar(10) DEFAULT NULL,
+  `supervisor_id` varchar(7) DEFAULT NULL,
+  `reason_for_change` varchar(255) DEFAULT NULL,
+  `is_current` tinyint(1) DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_by` varchar(100) DEFAULT NULL,
+  `modified_by` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `company_announcements`
+--
+
+CREATE TABLE `company_announcements` (
+  `announcement_id` int NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `content` text NOT NULL,
+  `category` enum('HR_Memo','Holiday','Internal_News','General','Policy','Event','Training') DEFAULT 'General',
+  `priority` enum('Low','Medium','High','Urgent') DEFAULT 'Medium',
+  `target_audience` enum('All','Management','HR','Department_Specific','Branch_Specific') DEFAULT 'All',
+  `target_department` varchar(100) DEFAULT NULL,
+  `target_branch` varchar(50) DEFAULT NULL,
+  `publish_date` datetime NOT NULL,
+  `expiry_date` datetime DEFAULT NULL,
+  `is_active` tinyint(1) DEFAULT '1',
+  `is_featured` tinyint(1) DEFAULT '0',
+  `attachment_type` varchar(255) DEFAULT NULL,
+  `attachment_data` longblob,
+  `attachment_size` varchar(20) DEFAULT NULL,
+  `created_by` varchar(100) NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_by` varchar(100) DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `company_holidays`
+--
+
+CREATE TABLE `company_holidays` (
+  `holiday_id` int NOT NULL,
+  `holiday_name` varchar(255) NOT NULL,
+  `holiday_date` date NOT NULL,
+  `holiday_type` enum('Regular','Special_Non_Working','Special_Working','Company') DEFAULT 'Regular',
+  `is_recurring` tinyint(1) DEFAULT '0',
+  `description` text,
+  `created_by` varchar(100) NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_by` varchar(100) DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `document_requests`
+--
+
+CREATE TABLE `document_requests` (
+  `request_id` int NOT NULL,
+  `emp_id` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `document_type` enum('Certificate_of_Employment','Employment_Verification','Salary_Certificate','Tax_Certificate','Leave_Certificate','Clearance','ID_Replacement','Others') NOT NULL,
+  `purpose` varchar(255) DEFAULT NULL,
+  `additional_notes` text,
+  `urgency` enum('Normal','Rush','Emergency') DEFAULT 'Normal',
+  `status` enum('Pending','Processing','Ready','Released','Cancelled') DEFAULT 'Pending',
+  `requested_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `target_release_date` date DEFAULT NULL,
+  `actual_release_date` datetime DEFAULT NULL,
+  `processed_by` varchar(100) DEFAULT NULL,
+  `processing_notes` text,
+  `file_type` varchar(255) DEFAULT NULL,
+  `file_data` longblob,
+  `file_size` varchar(20) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `employee_documents`
+--
+
+CREATE TABLE `employee_documents` (
+  `document_id` int NOT NULL,
+  `emp_id` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `document_name` varchar(255) NOT NULL,
+  `document_type` enum('Resume','Contract','ID_Copy','Medical_Certificate','Training_Certificate','Performance_Review','Disciplinary_Record','Others') NOT NULL,
+  `file_type` varchar(255) DEFAULT NULL,
+  `file_data` longblob,
+  `file_size` varchar(20) DEFAULT NULL,
+  `upload_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `uploaded_by` varchar(100) NOT NULL,
+  `description` text,
+  `is_confidential` tinyint(1) DEFAULT '0',
+  `expiry_date` date DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hr_communications`
+--
+
+CREATE TABLE `hr_communications` (
+  `communication_id` int NOT NULL,
+  `communication_type` enum('Email_Blast','SMS_Blast','System_Notification','Scheduled_Notice') NOT NULL,
+  `subject` varchar(255) NOT NULL,
+  `message_content` text NOT NULL,
+  `recipient_type` enum('All_Employees','Department_Specific','Branch_Specific','Individual','Management_Only') DEFAULT 'All_Employees',
+  `target_department` varchar(100) DEFAULT NULL,
+  `target_branch` varchar(50) DEFAULT NULL,
+  `target_employees` text,
+  `schedule_type` enum('Immediate','Scheduled','Recurring') DEFAULT 'Immediate',
+  `scheduled_datetime` datetime DEFAULT NULL,
+  `recurrence_pattern` enum('Daily','Weekly','Monthly','Yearly') DEFAULT NULL,
+  `status` enum('Draft','Scheduled','Sent','Failed','Cancelled') DEFAULT 'Draft',
+  `sent_datetime` datetime DEFAULT NULL,
+  `total_recipients` int DEFAULT '0',
+  `successful_sends` int DEFAULT '0',
+  `failed_sends` int DEFAULT '0',
+  `created_by` varchar(100) NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_by` varchar(100) DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `system_modules`
+--
+
+CREATE TABLE `system_modules` (
+  `module_id` int NOT NULL,
+  `module_name` varchar(100) NOT NULL,
+  `module_code` varchar(50) NOT NULL,
+  `module_description` text,
+  `parent_module_id` int DEFAULT NULL,
+  `module_url` varchar(255) DEFAULT NULL,
+  `module_icon` varchar(100) DEFAULT NULL,
+  `sort_order` int DEFAULT '0',
+  `is_active` tinyint(1) DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_access_module`
+--
+
+CREATE TABLE `user_access_module` (
+  `id` int NOT NULL,
+  `userid` int NOT NULL,
+  `module_id` int NOT NULL,
+  `access_level` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_head`
+--
+
+CREATE TABLE `user_head` (
+  `userid` int NOT NULL,
+  `emp_id` varchar(100) NOT NULL,
+  `emp_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `emp_position` varchar(100) NOT NULL,
+  `user_password` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `user_name` varchar(100) NOT NULL,
+  `user_type` varchar(25) NOT NULL,
+  `emp_supervisor_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `is_active` tinyint(1) NOT NULL,
+  `emp_devicehash` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `license_key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `emp_mobileno` varchar(25) NOT NULL,
+  `profile_pic` longblob,
+  `created_by` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `modified_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_personal_info`
+--
+
+CREATE TABLE `user_personal_info` (
+  `info_id` int NOT NULL,
+  `emp_id` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `first_name` varchar(50) NOT NULL,
+  `middle_name` varchar(50) DEFAULT NULL,
+  `last_name` varchar(50) NOT NULL,
+  `suffix` varchar(10) DEFAULT NULL,
+  `nickname` varchar(50) DEFAULT NULL,
+  `birth_date` date DEFAULT NULL,
+  `birth_place` varchar(100) DEFAULT NULL,
+  `gender` enum('Male','Female','Other') DEFAULT NULL,
+  `civil_status` enum('Single','Married','Divorced','Widowed','Separated') DEFAULT 'Single',
+  `nationality` varchar(50) DEFAULT NULL,
+  `religion` varchar(50) DEFAULT NULL,
+  `blood_type` varchar(5) DEFAULT NULL,
+  `height` decimal(5,2) DEFAULT NULL,
+  `weight` decimal(5,2) DEFAULT NULL,
+  `emergency_contact_name` varchar(100) DEFAULT NULL,
+  `emergency_contact_relationship` varchar(50) DEFAULT NULL,
+  `emergency_contact_number` varchar(25) DEFAULT NULL,
+  `emergency_contact_address` text,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_contact_info`
+--
+
+CREATE TABLE `user_contact_info` (
+  `contact_id` int NOT NULL,
+  `emp_id` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `personal_email` varchar(100) DEFAULT NULL,
+  `work_email` varchar(100) DEFAULT NULL,
+  `mobile_primary` varchar(25) DEFAULT NULL,
+  `mobile_secondary` varchar(25) DEFAULT NULL,
+  `landline` varchar(25) DEFAULT NULL,
+  `current_address` text,
+  `current_city` varchar(50) DEFAULT NULL,
+  `current_province` varchar(50) DEFAULT NULL,
+  `current_zipcode` varchar(10) DEFAULT NULL,
+  `permanent_address` text,
+  `permanent_city` varchar(50) DEFAULT NULL,
+  `permanent_province` varchar(50) DEFAULT NULL,
+  `permanent_zipcode` varchar(10) DEFAULT NULL,
+  `same_as_current` tinyint(1) DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_login_history`
+--
+
+CREATE TABLE `user_login_history` (
+  `id` int NOT NULL,
+  `user_id` varchar(100) NOT NULL,
+  `log_description` varchar(255) NOT NULL,
+  `log_date` timestamp NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_token`
+--
+
+CREATE TABLE `user_token` (
+  `id` int NOT NULL,
+  `userid` int NOT NULL,
+  `device_hash` varchar(255) NOT NULL,
+  `usertoken` varchar(255) NOT NULL,
+  `issued_at` date NOT NULL,
+  `expires_at` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payroll_components`
+--
+
+CREATE TABLE `payroll_components` (
+  `component_id` int NOT NULL,
+  `emp_id` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `pay_period` varchar(20) NOT NULL,
+  `basic_salary` decimal(12,2) DEFAULT '0.00',
+  `overtime_pay` decimal(12,2) DEFAULT '0.00',
+  `holiday_pay` decimal(12,2) DEFAULT '0.00',
+  `night_diff` decimal(12,2) DEFAULT '0.00',
+  `allowances` decimal(12,2) DEFAULT '0.00',
+  `bonuses` decimal(12,2) DEFAULT '0.00',
+  `commissions` decimal(12,2) DEFAULT '0.00',
+  `gross_pay` decimal(12,2) DEFAULT '0.00',
+  `sss_contribution` decimal(8,2) DEFAULT '0.00',
+  `philhealth_contribution` decimal(8,2) DEFAULT '0.00',
+  `pagibig_contribution` decimal(8,2) DEFAULT '0.00',
+  `withholding_tax` decimal(8,2) DEFAULT '0.00',
+  `other_deductions` decimal(8,2) DEFAULT '0.00',
+  `total_deductions` decimal(12,2) DEFAULT '0.00',
+  `net_pay` decimal(12,2) DEFAULT '0.00',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `HR_Evaluations`
+--
+ALTER TABLE `HR_Evaluations`
+  ADD PRIMARY KEY (`Evaluation_ID`),
+  ADD KEY `ID` (`ID`);
+
+--
+-- Indexes for table `HR_Evaluations_ResultAction`
+--
+ALTER TABLE `HR_Evaluations_ResultAction`
+  ADD PRIMARY KEY (`Evaluation_ID`,`Evaluatee_ID`),
+  ADD KEY `ID` (`ID`);
+
+--
+-- Indexes for table `HR_Evaluation_Questions`
+--
+ALTER TABLE `HR_Evaluation_Questions`
+  ADD PRIMARY KEY (`Evaluation_ID`,`Question_ID`),
+  ADD KEY `ID` (`ID`);
+
+--
+-- Indexes for table `HR_Evaluation_Tandem`
+--
+ALTER TABLE `HR_Evaluation_Tandem`
+  ADD PRIMARY KEY (`Evaluation_ID`,`Evaluatee`,`Evaluator`),
+  ADD KEY `ID` (`ID`);
+
+--
+-- Indexes for table `HR_Evaluator`
+--
+ALTER TABLE `HR_Evaluator`
+  ADD PRIMARY KEY (`Evaluation_ID`,`Evaluatee_ID`,`Evaluator_ID`),
+  ADD KEY `ID` (`ID`);
+
+--
+-- Indexes for table `HR_Evaluator_Answers`
+--
+ALTER TABLE `HR_Evaluator_Answers`
+  ADD PRIMARY KEY (`Evaluation_ID`,`Evaluatee_ID`,`Evaluator_ID`,`Question_ID`),
+  ADD KEY `ID` (`ID`);
+
+--
+-- Indexes for table `HR_Payslip`
+--
+ALTER TABLE `HR_Payslip`
+  ADD PRIMARY KEY (`TransID`),
+  ADD KEY `IDNo` (`IDNo`);
+
+--
+-- Indexes for table `leave_details`
+--
+ALTER TABLE `leave_details`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `leave_request_id` (`leave_request_id`),
+  ADD KEY `emp_id_idx` (`eformno`);
+
+--
+-- Indexes for table `leave_head`
+--
+ALTER TABLE `leave_head`
+  ADD PRIMARY KEY (`request_id`),
+  ADD KEY `employee_id` (`emp_id`),
+  ADD KEY `status_idx` (`status`),
+  ADD KEY `leave_type_idx` (`leave_type`);
+
+--
+-- Indexes for table `leave_credits`
+--
+ALTER TABLE `leave_credits`
+  ADD PRIMARY KEY (`credit_id`),
+  ADD UNIQUE KEY `emp_leave_year_unique` (`emp_id`,`leave_type`,`credit_year`),
+  ADD KEY `emp_id_idx` (`emp_id`),
+  ADD KEY `credit_year_idx` (`credit_year`);
+
+--
+-- Indexes for table `overtime`
+--
+ALTER TABLE `overtime`
+  ADD PRIMARY KEY (`request_id`),
+  ADD KEY `employee_id` (`emp_id`),
+  ADD KEY `ot_date_idx` (`ot_date`),
+  ADD KEY `status_idx` (`status`);
+
+--
+-- Indexes for table `remote`
+--
+ALTER TABLE `remote`
+  ADD PRIMARY KEY (`request_id`),
+  ADD KEY `employee_id` (`emp_id`),
+  ADD KEY `status_idx` (`status`),
+  ADD KEY `date_range_idx` (`start_date`,`end_date`);
+
+--
+-- Indexes for table `requests`
+--
+ALTER TABLE `requests`
+  ADD PRIMARY KEY (`request_id`),
+  ADD KEY `employee_id` (`emp_id`),
+  ADD KEY `request_type_idx` (`request_type`);
+
+--
+-- Indexes for table `time_logs`
+--
+ALTER TABLE `time_logs`
+  ADD PRIMARY KEY (`log_id`),
+  ADD KEY `employee_id` (`emp_id`),
+  ADD KEY `log_date_idx` (`log_date`),
+  ADD KEY `emp_date_idx` (`emp_id`,`log_date`);
+
+--
+-- Indexes for table `attendance_summary`
+--
+ALTER TABLE `attendance_summary`
+  ADD PRIMARY KEY (`summary_id`),
+  ADD UNIQUE KEY `emp_date_unique` (`emp_id`,`attendance_date`),
+  ADD KEY `emp_id_idx` (`emp_id`),
+  ADD KEY `attendance_date_idx` (`attendance_date`),
+  ADD KEY `status_idx` (`status`);
+
+--
+-- Indexes for table `employment_history`
+--
+ALTER TABLE `employment_history`
+  ADD PRIMARY KEY (`history_id`),
+  ADD KEY `emp_id_idx` (`emp_id`),
+  ADD KEY `current_position_idx` (`is_current`),
+  ADD KEY `date_range_idx` (`start_date`,`end_date`);
+
+--
+-- Indexes for table `company_announcements`
+--
+ALTER TABLE `company_announcements`
+  ADD PRIMARY KEY (`announcement_id`),
+  ADD KEY `category_idx` (`category`),
+  ADD KEY `active_idx` (`is_active`),
+  ADD KEY `publish_date_idx` (`publish_date`),
+  ADD KEY `priority_idx` (`priority`),
+  ADD KEY `target_audience_idx` (`target_audience`);
+
+--
+-- Indexes for table `company_holidays`
+--
+ALTER TABLE `company_holidays`
+  ADD PRIMARY KEY (`holiday_id`),
+  ADD KEY `holiday_date_idx` (`holiday_date`),
+  ADD KEY `holiday_type_idx` (`holiday_type`),
+  ADD KEY `recurring_idx` (`is_recurring`);
+
+--
+-- Indexes for table `document_requests`
+--
+ALTER TABLE `document_requests`
+  ADD PRIMARY KEY (`request_id`),
+  ADD KEY `emp_id_idx` (`emp_id`),
+  ADD KEY `status_idx` (`status`),
+  ADD KEY `document_type_idx` (`document_type`),
+  ADD KEY `requested_date_idx` (`requested_date`);
+
+--
+-- Indexes for table `employee_documents`
+--
+ALTER TABLE `employee_documents`
+  ADD PRIMARY KEY (`document_id`),
+  ADD KEY `emp_id_idx` (`emp_id`),
+  ADD KEY `document_type_idx` (`document_type`),
+  ADD KEY `confidential_idx` (`is_confidential`),
+  ADD KEY `expiry_date_idx` (`expiry_date`);
+
+--
+-- Indexes for table `hr_communications`
+--
+ALTER TABLE `hr_communications`
+  ADD PRIMARY KEY (`communication_id`),
+  ADD KEY `communication_type_idx` (`communication_type`),
+  ADD KEY `status_idx` (`status`),
+  ADD KEY `schedule_type_idx` (`schedule_type`),
+  ADD KEY `scheduled_datetime_idx` (`scheduled_datetime`);
+
+--
+-- Indexes for table `system_modules`
+--
+ALTER TABLE `system_modules`
+  ADD PRIMARY KEY (`module_id`),
+  ADD UNIQUE KEY `module_code_unique` (`module_code`),
+  ADD KEY `parent_module_idx` (`parent_module_id`),
+  ADD KEY `active_idx` (`is_active`),
+  ADD KEY `sort_order_idx` (`sort_order`);
+
+--
+-- Indexes for table `user_access_module`
+--
+ALTER TABLE `user_access_module`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `user_module_unique` (`userid`,`module_id`),
+  ADD KEY `userid_idx` (`userid`),
+  ADD KEY `module_id_idx` (`module_id`);
+
+--
+-- Indexes for table `user_head`
+--
+ALTER TABLE `user_head`
+  ADD PRIMARY KEY (`userid`,`emp_id`),
+  ADD UNIQUE KEY `emp_id_unique` (`emp_id`),
+  ADD UNIQUE KEY `user_name_unique` (`user_name`),
+  ADD KEY `supervisor_idx` (`emp_supervisor_id`),
+  ADD KEY `active_idx` (`is_active`),
+  ADD KEY `user_type_idx` (`user_type`);
+
+--
+-- Indexes for table `user_personal_info`
+--
+ALTER TABLE `user_personal_info`
+  ADD PRIMARY KEY (`info_id`),
+  ADD UNIQUE KEY `emp_id_unique` (`emp_id`),
+  ADD KEY `birth_date_idx` (`birth_date`),
+  ADD KEY `gender_idx` (`gender`);
+
+--
+-- Indexes for table `user_contact_info`
+--
+ALTER TABLE `user_contact_info`
+  ADD PRIMARY KEY (`contact_id`),
+  ADD UNIQUE KEY `emp_id_unique` (`emp_id`),
+  ADD KEY `personal_email_idx` (`personal_email`),
+  ADD KEY `work_email_idx` (`work_email`);
+
+--
+-- Indexes for table `user_login_history`
+--
+ALTER TABLE `user_login_history`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id_idx` (`user_id`),
+  ADD KEY `log_date_idx` (`log_date`);
+
+--
+-- Indexes for table `user_token`
+--
+ALTER TABLE `user_token`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `userid_idx` (`userid`),
+  ADD KEY `device_hash_idx` (`device_hash`),
+  ADD KEY `expires_at_idx` (`expires_at`);
+
+--
+-- Indexes for table `payroll_components`
+--
+ALTER TABLE `payroll_components`
+  ADD PRIMARY KEY (`component_id`),
+  ADD UNIQUE KEY `emp_period_unique` (`emp_id`,`pay_period`),
+  ADD KEY `emp_id_idx` (`emp_id`),
+  ADD KEY `pay_period_idx` (`pay_period`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `HR_Evaluations`
+--
+ALTER TABLE `HR_Evaluations`
+  MODIFY `ID` bigint NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `HR_Evaluations_ResultAction`
+--
+ALTER TABLE `HR_Evaluations_ResultAction`
+  MODIFY `ID` bigint NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `HR_Evaluation_Questions`
+--
+ALTER TABLE `HR_Evaluation_Questions`
+  MODIFY `ID` bigint NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `HR_Evaluation_Tandem`
+--
+ALTER TABLE `HR_Evaluation_Tandem`
+  MODIFY `ID` bigint NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `HR_Evaluator`
+--
+ALTER TABLE `HR_Evaluator`
+  MODIFY `ID` bigint NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `HR_Evaluator_Answers`
+--
+ALTER TABLE `HR_Evaluator_Answers`
+  MODIFY `ID` bigint NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `HR_Payslip`
+--
+ALTER TABLE `HR_Payslip`
+  MODIFY `TransID` bigint NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `leave_details`
+--
+ALTER TABLE `leave_details`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+
+--
+-- AUTO_INCREMENT for table `leave_credits`
+--
+ALTER TABLE `leave_credits`
+  MODIFY `credit_id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `requests`
+--
+ALTER TABLE `requests`
+  MODIFY `request_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+
+--
+-- AUTO_INCREMENT for table `time_logs`
+--
+ALTER TABLE `time_logs`
+  MODIFY `log_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `attendance_summary`
+--
+ALTER TABLE `attendance_summary`
+  MODIFY `summary_id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `employment_history`
+--
+ALTER TABLE `employment_history`
+  MODIFY `history_id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `company_announcements`
+--
+ALTER TABLE `company_announcements`
+  MODIFY `announcement_id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `company_holidays`
+--
+ALTER TABLE `company_holidays`
+  MODIFY `holiday_id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `document_requests`
+--
+ALTER TABLE `document_requests`
+  MODIFY `request_id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `employee_documents`
+--
+ALTER TABLE `employee_documents`
+  MODIFY `document_id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `hr_communications`
+--
+ALTER TABLE `hr_communications`
+  MODIFY `communication_id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `system_modules`
+--
+ALTER TABLE `system_modules`
+  MODIFY `module_id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `user_head`
+--
+ALTER TABLE `user_head`
+  MODIFY `userid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
+--
+-- AUTO_INCREMENT for table `user_personal_info`
+--
+ALTER TABLE `user_personal_info`
+  MODIFY `info_id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `user_contact_info`
+--
+ALTER TABLE `user_contact_info`
+  MODIFY `contact_id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `user_login_history`
+--
+ALTER TABLE `user_login_history`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=432;
+
+--
+-- AUTO_INCREMENT for table `user_token`
+--
+ALTER TABLE `user_token`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
+--
+-- AUTO_INCREMENT for table `payroll_components`
+--
+ALTER TABLE `payroll_components`
+  MODIFY `component_id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- Foreign key constraints for dumped tables
+--
+
+--
+-- Constraints for table `leave_details`
+--
+ALTER TABLE `leave_details`
+  ADD CONSTRAINT `fk_leave_details_head` FOREIGN KEY (`leave_request_id`) REFERENCES `leave_head` (`request_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `user_access_module`
+--
+ALTER TABLE `user_access_module`
+  ADD CONSTRAINT `fk_user_access_module_user` FOREIGN KEY (`userid`) REFERENCES `user_head` (`userid`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_user_access_module_module` FOREIGN KEY (`module_id`) REFERENCES `system_modules` (`module_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `user_personal_info`
+--
+ALTER TABLE `user_personal_info`
+  ADD CONSTRAINT `fk_personal_info_user` FOREIGN KEY (`emp_id`) REFERENCES `user_head` (`emp_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `user_contact_info`
+--
+ALTER TABLE `user_contact_info`
+  ADD CONSTRAINT `fk_contact_info_user` FOREIGN KEY (`emp_id`) REFERENCES `user_head` (`emp_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `user_token`
+--
+ALTER TABLE `user_token`
+  ADD CONSTRAINT `fk_user_token_user` FOREIGN KEY (`userid`) REFERENCES `user_head` (`userid`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `employment_history`
+--
+ALTER TABLE `employment_history`
+  ADD CONSTRAINT `fk_employment_history_user` FOREIGN KEY (`emp_id`) REFERENCES `user_head` (`emp_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `leave_credits`
+--
+ALTER TABLE `leave_credits`
+  ADD CONSTRAINT `fk_leave_credits_user` FOREIGN KEY (`emp_id`) REFERENCES `user_head` (`emp_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `attendance_summary`
+--
+ALTER TABLE `attendance_summary`
+  ADD CONSTRAINT `fk_attendance_summary_user` FOREIGN KEY (`emp_id`) REFERENCES `user_head` (`emp_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `document_requests`
+--
+ALTER TABLE `document_requests`
+  ADD CONSTRAINT `fk_document_requests_user` FOREIGN KEY (`emp_id`) REFERENCES `user_head` (`emp_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `employee_documents`
+--
+ALTER TABLE `employee_documents`
+  ADD CONSTRAINT `fk_employee_documents_user` FOREIGN KEY (`emp_id`) REFERENCES `user_head` (`emp_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `payroll_components`
+--
+ALTER TABLE `payroll_components`
+  ADD CONSTRAINT `fk_payroll_components_user` FOREIGN KEY (`emp_id`) REFERENCES `user_head` (`emp_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `time_logs`
+--
+ALTER TABLE `time_logs`
+  ADD CONSTRAINT `fk_time_logs_user` FOREIGN KEY (`emp_id`) REFERENCES `user_head` (`emp_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `leave_head`
+--
+ALTER TABLE `leave_head`
+  ADD CONSTRAINT `fk_leave_head_user` FOREIGN KEY (`emp_id`) REFERENCES `user_head` (`emp_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `remote`
+--
+ALTER TABLE `remote`
+  ADD CONSTRAINT `fk_remote_user` FOREIGN KEY (`emp_id`) REFERENCES `user_head` (`emp_id`) ON DELETE CASCADE;
+
+--
+-- Sample Data Inserts for System Modules
+--
+
+INSERT INTO `system_modules` (`module_name`, `module_code`, `module_description`, `parent_module_id`, `module_url`, `module_icon`, `sort_order`, `is_active`) VALUES
+('My Profile', 'PROFILE', 'User profile management', NULL, '/profile', 'user', 1, 1),
+('View Profile', 'PROFILE_VIEW', 'View user profile details', 1, '/profile/view', 'eye', 1, 1),
+('Edit Contact Info', 'PROFILE_CONTACT', 'Edit contact information', 1, '/profile/contact', 'phone', 2, 1),
+('Change Password', 'PROFILE_PASSWORD', 'Change user password', 1, '/profile/password', 'lock', 3, 1),
+('Upload Profile Picture', 'PROFILE_PICTURE', 'Upload profile picture', 1, '/profile/picture', 'camera', 4, 1),
+
+('Employment Details', 'EMPLOYMENT', 'Employment information', NULL, '/employment', 'briefcase', 2, 1),
+('Job Title', 'EMPLOYMENT_TITLE', 'Current job title', 2, '/employment/title', 'badge', 1, 1),
+('Employment History', 'EMPLOYMENT_HISTORY', 'Employment history records', 2, '/employment/history', 'history', 2, 1),
+
+('Attendance and Time Tracking', 'ATTENDANCE', 'Time and attendance management', NULL, '/attendance', 'clock', 3, 1),
+('My Daily Time Record', 'ATTENDANCE_DTR', 'Daily time record', 3, '/attendance/dtr', 'calendar', 1, 1),
+('View Attendance Summary', 'ATTENDANCE_SUMMARY', 'Attendance summary report', 3, '/attendance/summary', 'chart-bar', 2, 1),
+
+('Overtime Request', 'OVERTIME', 'Overtime request management', NULL, '/overtime', 'clock-plus', 4, 1),
+('Current Overtime', 'OVERTIME_CURRENT', 'Current overtime requests', 4, '/overtime/current', 'list', 1, 1),
+('Archived Overtime', 'OVERTIME_ARCHIVED', 'Archived overtime requests', 4, '/overtime/archived', 'archive', 2, 1),
+
+('Leave Management', 'LEAVE', 'Leave request management', NULL, '/leave', 'calendar-x', 5, 1),
+('Current Leave', 'LEAVE_CURRENT', 'Current leave requests', 5, '/leave/current', 'list', 1, 1),
+('Archived Leave', 'LEAVE_ARCHIVED', 'Archived leave requests', 5, '/leave/archived', 'archive', 2, 1),
+('Leave Credits', 'LEAVE_CREDITS', 'Leave credits balance', 5, '/leave/credits', 'credit-card', 3, 1),
+
+('Remote Work Request', 'REMOTE', 'Remote work request management', NULL, '/remote', 'home', 6, 1),
+('Current Remote', 'REMOTE_CURRENT', 'Current remote work requests', 6, '/remote/current', 'list', 1, 1),
+('Archived Remote', 'REMOTE_ARCHIVED', 'Archived remote work requests', 6, '/remote/archived', 'archive', 2, 1),
+
+('Payroll', 'PAYROLL', 'Payroll management', NULL, '/payroll', 'dollar-sign', 7, 1),
+('View Payslip', 'PAYROLL_PAYSLIP', 'View payslip', 7, '/payroll/payslip', 'file-text', 1, 1),
+
+('Performance Evaluation', 'EVALUATION', 'Performance evaluation system', NULL, '/evaluation', 'star', 8, 1),
+('Self Evaluation', 'EVALUATION_SELF', 'Self evaluation', 8, '/evaluation/self', 'user-check', 1, 1),
+('My Reviews', 'EVALUATION_REVIEWS', 'My performance reviews', 8, '/evaluation/reviews', 'clipboard', 2, 1),
+
+('My Documents', 'DOCUMENTS', 'Document management', NULL, '/documents', 'folder', 9, 1),
+('Request Document', 'DOCUMENTS_REQUEST', 'Request official documents', 9, '/documents/request', 'file-plus', 1, 1),
+
+('Company Announcements', 'ANNOUNCEMENTS', 'Company communications', NULL, '/announcements', 'megaphone', 10, 1),
+('View HR Memos', 'ANNOUNCEMENTS_MEMOS', 'View HR memos', 10, '/announcements/memos', 'mail', 1, 1),
+('Holiday List', 'ANNOUNCEMENTS_HOLIDAYS', 'Company holiday list', 10, '/announcements/holidays', 'calendar', 2, 1),
+('Internal News', 'ANNOUNCEMENTS_NEWS', 'Internal company news', 10, '/announcements/news', 'newspaper', 3, 1),
+
+('Supervisor Panel', 'SUPERVISOR', 'Supervisor management panel', NULL, '/supervisor', 'users', 11, 1),
+('My Team', 'SUPERVISOR_TEAM', 'Team management', 11, '/supervisor/team', 'user-friends', 1, 1),
+('Team Directory', 'SUPERVISOR_DIRECTORY', 'Team directory', 11, '/supervisor/directory', 'address-book', 2, 1),
+('Attendance Summary', 'SUPERVISOR_ATTENDANCE', 'Team attendance summary', 11, '/supervisor/attendance', 'chart-line', 3, 1),
+('Team Leave Balance', 'SUPERVISOR_LEAVE', 'Team leave balance', 11, '/supervisor/leave', 'balance-scale', 4, 1),
+
+('For Approval', 'APPROVAL', 'Request approval management', NULL, '/approval', 'check-circle', 12, 1),
+('Overtime Approval', 'APPROVAL_OVERTIME', 'Overtime requests for approval', 12, '/approval/overtime', 'clock', 1, 1),
+('Leave Approval', 'APPROVAL_LEAVE', 'Leave requests for approval', 12, '/approval/leave', 'calendar', 2, 1),
+('Remote Work Approval', 'APPROVAL_REMOTE', 'Remote work requests for approval', 12, '/approval/remote', 'home', 3, 1),
+
+('HR Management', 'HR', 'HR management system', NULL, '/hr', 'user-tie', 13, 1),
+('Employee Records', 'HR_EMPLOYEES', 'Employee records management', 13, '/hr/employees', 'users', 1, 1),
+('Attendance Monitoring', 'HR_ATTENDANCE', 'HR attendance monitoring', 13, '/hr/attendance', 'monitor', 2, 1),
+('View Overtime Requests', 'HR_OVERTIME', 'View all overtime requests', 13, '/hr/overtime', 'clock', 3, 1),
+('Leave Administration', 'HR_LEAVE_ADMIN', 'Leave administration', 13, '/hr/leave', 'calendar-check', 4, 1),
+('Payroll Management', 'HR_PAYROLL', 'Payroll management', 13, '/hr/payroll', 'money-bill', 5, 1),
+('Performance Management', 'HR_PERFORMANCE', 'Performance management', 13, '/hr/performance', 'trophy', 6, 1),
+('Create Evaluation', 'HR_EVALUATION_CREATE', 'Create performance evaluation', 13, '/hr/evaluation/create', 'plus-circle', 7, 1),
+('Review Evaluations', 'HR_EVALUATION_REVIEW', 'Review performance evaluations', 13, '/hr/evaluation/review', 'search', 8, 1),
+('HR Requests', 'HR_REQUESTS', 'View all HR requests', 13, '/hr/requests', 'inbox', 9, 1),
+
+('HR Communications', 'HR_COMMUNICATIONS', 'HR communication tools', NULL, '/hr/communications', 'broadcast-tower', 14, 1),
+('Create Announcements', 'HR_COMM_ANNOUNCE', 'Create company announcements', 14, '/hr/communications/announcements', 'bullhorn', 1, 1),
+('Schedule Notices', 'HR_COMM_NOTICES', 'Schedule notices', 14, '/hr/communications/notices', 'calendar-plus', 2, 1),
+('Send Email Blasts', 'HR_COMM_EMAIL', 'Send email blasts', 14, '/hr/communications/email', 'mail-bulk', 3, 1);
+
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

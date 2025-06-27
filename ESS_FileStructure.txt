@@ -1,0 +1,200 @@
+ESS.WebApp/
+¦
++-- Controllers/
+¦   +-- AuthController.cs
+¦   +-- ProfileController.cs
+¦   +-- EmploymentController.cs
+¦   +-- AttendanceController.cs
+¦   +-- OvertimeController.cs
+¦   +-- LeaveController.cs
+¦   +-- RemoteWorkController.cs
+¦   +-- PayrollController.cs
+¦   +-- EvaluationController.cs
+¦   +-- DocumentController.cs
+¦   +-- AnnouncementController.cs
+¦   +-- SupervisorController.cs
+¦   +-- ApprovalController.cs
+¦   +-- HRController.cs
+¦   +-- HRCommunicationController.cs
+¦
++-- Data/
+¦   +-- ApplicationDbContext.cs
+¦
++-- Models/
+¦   +-- User/
+¦   ¦   +-- UserHead.cs
+¦   ¦   +-- UserPersonalInfo.cs
+¦   ¦   +-- UserContactInfo.cs
+¦   ¦   +-- UserLoginHistory.cs
+¦   ¦   +-- UserToken.cs
+¦   ¦   +-- UserAccessModule.cs
+¦   +-- Employment/
+¦   ¦   +-- EmploymentHistory.cs
+¦   +-- Attendance/
+¦   ¦   +-- TimeLog.cs
+¦   ¦   +-- AttendanceSummary.cs
+¦   +-- Leave/
+¦   ¦   +-- LeaveHead.cs
+¦   ¦   +-- LeaveDetails.cs
+¦   ¦   +-- LeaveCredits.cs
+¦   +-- Overtime/
+¦   ¦   +-- OvertimeRequest.cs
+¦   +-- Remote/
+¦   ¦   +-- RemoteRequest.cs
+¦   +-- Payroll/
+¦   ¦   +-- PayrollComponents.cs
+¦   ¦   +-- Payslip.cs
+¦   +-- Evaluation/
+¦   ¦   +-- Evaluation.cs
+¦   ¦   +-- Evaluator.cs
+¦   ¦   +-- Questions.cs
+¦   ¦   +-- EvaluationResults.cs
+¦   ¦   +-- EvaluationAnswers.cs
+¦   +-- Documents/
+¦   ¦   +-- DocumentRequest.cs
+¦   ¦   +-- EmployeeDocument.cs
+¦   +-- Announcement/
+¦   ¦   +-- CompanyAnnouncement.cs
+¦   ¦   +-- CompanyHoliday.cs
+¦   +-- HR/
+¦   ¦   +-- HRRequest.cs
+¦   ¦   +-- HRCommunication.cs
+¦   ¦   +-- SystemLog.cs
+¦   +-- System/
+¦       +-- SystemModule.cs
+¦       +-- MenuConstants.cs
+¦
++-- Repositories/
+¦   +-- Interfaces/
+¦   ¦   +-- IRepository.cs
+¦   ¦   +-- IUserRepository.cs
+¦   ¦   +-- ILeaveRepository.cs
+¦   ¦   +-- IModuleRepository.cs
+¦   ¦   +-- (other module-specific interfaces)
+¦   +-- Implementations/
+¦       +-- Repository.cs
+¦       +-- UserRepository.cs
+¦       +-- LeaveRepository.cs
+¦       +-- ModuleRepository.cs
+¦
++-- Services/
+¦   +-- Interfaces/
+¦   ¦   +-- IAuthService.cs
+¦   ¦   +-- IModuleService.cs
+¦   ¦   +-- IUserService.cs
+¦   ¦   +-- (more service contracts)
+¦   +-- Implementations/
+¦       +-- AuthService.cs
+¦       +-- ModuleService.cs
+¦       +-- UserService.cs
+¦       +-- (other services)
+¦
++-- ViewModels/
+¦   +-- Sidebar/
+¦   ¦   +-- ModuleViewModel.cs
+¦   +-- Leave/
+¦   ¦   +-- LeaveCreditsViewModel.cs
+¦   +-- Attendance/
+¦   ¦   +-- AttendanceSummaryViewModel.cs
+¦   +-- Evaluation/
+¦   ¦   +-- EvaluationResultViewModel.cs
+¦   +-- Auth/
+¦       +-- LoginViewModel.cs
+¦       +-- RegisterViewModel.cs
+¦
++-- Views/
+¦   +-- Shared/
+¦   ¦   +-- _Layout.cshtml
+¦   ¦   +-- _Sidebar.cshtml
+¦   ¦   +-- _Navbar.cshtml
+¦   ¦   +-- _Footer.cshtml
+¦   ¦   +-- _LoginPartial.cshtml
+¦   +-- Auth/
+¦   ¦   +-- Login.cshtml
+¦   ¦   +-- Register.cshtml
+¦
+¦   +-- Employee/
+¦   ¦   +-- Dashboard.cshtml
+¦   ¦   +-- Profile/
+¦   ¦   ¦   +-- View.cshtml
+¦   ¦   ¦   +-- EditContact.cshtml
+¦   ¦   ¦   +-- ChangePassword.cshtml
+¦   ¦   ¦   +-- UploadPicture.cshtml
+¦   ¦   +-- Employment/
+¦   ¦   ¦   +-- JobTitle.cshtml
+¦   ¦   ¦   +-- History.cshtml
+¦   ¦   +-- Attendance/
+¦   ¦   ¦   +-- DTR.cshtml
+¦   ¦   ¦   +-- Summary.cshtml
+¦   ¦   +-- Overtime/
+¦   ¦   ¦   +-- Current.cshtml
+¦   ¦   ¦   +-- Archived.cshtml
+¦   ¦   +-- Leave/
+¦   ¦   ¦   +-- Current.cshtml
+¦   ¦   ¦   +-- Archived.cshtml
+¦   ¦   ¦   +-- Credits.cshtml
+¦   ¦   +-- Remote/
+¦   ¦   ¦   +-- Current.cshtml
+¦   ¦   ¦   +-- Archived.cshtml
+¦   ¦   +-- Payroll/
+¦   ¦   ¦   +-- Payslip.cshtml
+¦   ¦   +-- Evaluation/
+¦   ¦   ¦   +-- Self.cshtml
+¦   ¦   ¦   +-- MyReviews.cshtml
+¦   ¦   +-- Documents/
+¦   ¦   ¦   +-- Request.cshtml
+¦   ¦   +-- Announcements/
+¦   ¦       +-- HRMemos.cshtml
+¦   ¦       +-- Holidays.cshtml
+¦   ¦       +-- News.cshtml
+¦
+¦   +-- Supervisor/
+¦   ¦   +-- Dashboard.cshtml
+¦   ¦   +-- MyTeam/
+¦   ¦   ¦   +-- Directory.cshtml
+¦   ¦   ¦   +-- Attendance.cshtml
+¦   ¦   ¦   +-- LeaveBalance.cshtml
+¦   ¦   +-- ForApproval/
+¦   ¦       +-- Overtime.cshtml
+¦   ¦       +-- Leave.cshtml
+¦   ¦       +-- Remote.cshtml
+¦
+¦   +-- HR/
+¦   ¦   +-- Dashboard.cshtml
+¦   ¦   +-- Employees/
+¦   ¦   ¦   +-- List.cshtml
+¦   ¦   ¦   +-- View.cshtml
+¦   ¦   +-- Attendance/
+¦   ¦   ¦   +-- Summary.cshtml
+¦   ¦   ¦   +-- Overtime.cshtml
+¦   ¦   +-- Leave/
+¦   ¦   ¦   +-- Requests.cshtml
+¦   ¦   ¦   +-- Credits.cshtml
+¦   ¦   +-- Payroll/
+¦   ¦   ¦   +-- Index.cshtml
+¦   ¦   +-- Evaluation/
+¦   ¦   ¦   +-- Create.cshtml
+¦   ¦   ¦   +-- Review.cshtml
+¦   ¦   +-- Requests/
+¦   ¦   ¦   +-- All.cshtml
+¦   ¦   +-- Communications/
+¦   ¦       +-- Announcements.cshtml
+¦   ¦       +-- Notices.cshtml
+¦   ¦       +-- Email.cshtml
+¦
++-- wwwroot/
+¦   +-- css/
+¦   ¦   +-- site.css
+¦   +-- js/
+¦   ¦   +-- site.js
+¦   ¦   +-- sidebar.js
+¦   +-- images/
+¦   +-- libs/
+¦       +-- syncfusion/
+¦       +-- bootstrap/
+¦
++-- Migrations/
++-- appsettings.json
++-- Program.cs
++-- Startup.cs
++-- _ViewImports.cshtml

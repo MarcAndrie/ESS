@@ -1,0 +1,68 @@
+-- Parent: My Profile
+INSERT INTO ref_MenuItems (MenuID, MenuText, MainMenuID, MenuTriggerName, TargetLink, IconCSS)
+VALUES (100, 'My Profile', NULL, 'MyProfile', '#', 'fas fa-user');
+
+INSERT INTO ref_MenuItems VALUES (101, 'View Profile', 100, 'ViewProfile', '/Employee/ViewProfile', 'fas fa-id-card');
+INSERT INTO ref_MenuItems VALUES (102, 'Edit Contact Info', 100, 'EditContact', '/Employee/EditContact', 'fas fa-edit');
+INSERT INTO ref_MenuItems VALUES (103, 'Change Password', 100, 'ChangePassword', '/Employee/ChangePassword', 'fas fa-key');
+INSERT INTO ref_MenuItems VALUES (104, 'Upload Profile Picture', 100, 'UploadProfilePicture', '/Employee/UploadProfilePicture', 'fas fa-upload');
+
+-- Parent: Employment Details
+INSERT INTO ref_MenuItems VALUES (200, 'Employment Details', NULL, 'EmploymentDetails', '#', 'fas fa-briefcase');
+INSERT INTO ref_MenuItems VALUES (201, 'Job Title', 200, 'JobTitle', '/Employee/JobTitle', 'fas fa-user-tie');
+INSERT INTO ref_MenuItems VALUES (202, 'Employment History', 200, 'EmploymentHistory', '/Employee/EmploymentHistory', 'fas fa-history');
+
+-- Parent: Attendance and Time Tracking
+INSERT INTO ref_MenuItems VALUES (300, 'Attendance and Time Tracking', NULL, 'Attendance', '#', 'fas fa-clock');
+INSERT INTO ref_MenuItems VALUES (301, 'My Daily Time Record', 300, 'DailyTimeRecord', '/Employee/DTR', 'fas fa-calendar-day');
+INSERT INTO ref_MenuItems VALUES (302, 'View Attendance Summary', 300, 'AttendanceSummary', '/Employee/AttendanceSummary', 'fas fa-calendar-check');
+
+-- Parent: Overtime Request
+INSERT INTO ref_MenuItems VALUES (400, 'Overtime Request', NULL, 'Overtime', '#', 'fas fa-business-time');
+INSERT INTO ref_MenuItems VALUES (401, 'Current', 400, 'CurrentOvertime', '/Employee/Overtime/Current', 'fas fa-hourglass-half');
+INSERT INTO ref_MenuItems VALUES (402, 'Archived', 400, 'ArchivedOvertime', '/Employee/Overtime/Archived', 'fas fa-archive');
+
+-- Parent: Leave Management
+INSERT INTO ref_MenuItems VALUES (500, 'Leave Management', NULL, 'Leave', '#', 'fas fa-plane');
+INSERT INTO ref_MenuItems VALUES (501, 'Current', 500, 'CurrentLeave', '/Employee/Leave/Current', 'fas fa-hourglass-half');
+INSERT INTO ref_MenuItems VALUES (502, 'Archived', 500, 'ArchivedLeave', '/Employee/Leave/Archived', 'fas fa-archive');
+INSERT INTO ref_MenuItems VALUES (503, 'Leave Credits', 500, 'LeaveCredits', '/Employee/Leave/Credits', 'fas fa-list');
+
+-- Parent: Remote Work Request
+INSERT INTO ref_MenuItems VALUES (600, 'Remote Work Request', NULL, 'RemoteWork', '#', 'fas fa-laptop-house');
+INSERT INTO ref_MenuItems VALUES (601, 'Current', 600, 'CurrentRemote', '/Employee/Remote/Current', 'fas fa-hourglass-half');
+INSERT INTO ref_MenuItems VALUES (602, 'Archived', 600, 'ArchivedRemote', '/Employee/Remote/Archived', 'fas fa-archive');
+
+-- Parent: Payroll
+INSERT INTO ref_MenuItems VALUES (700, 'Payroll', NULL, 'Payroll', '#', 'fas fa-money-bill');
+INSERT INTO ref_MenuItems VALUES (701, 'View Payslip', 700, 'ViewPayslip', '/Employee/Payroll/Payslip', 'fas fa-file-invoice-dollar');
+
+-- Parent: Performance Evaluation
+INSERT INTO ref_MenuItems VALUES (800, 'Performance Evaluation', NULL, 'Performance', '#', 'fas fa-chart-line');
+INSERT INTO ref_MenuItems VALUES (801, 'Self Evaluation', 800, 'SelfEvaluation', '/Employee/Performance/Self', 'fas fa-user-check');
+INSERT INTO ref_MenuItems VALUES (802, 'My Reviews', 800, 'MyReviews', '/Employee/Performance/Reviews', 'fas fa-comments');
+
+-- Parent: My Documents
+INSERT INTO ref_MenuItems VALUES (900, 'My Documents', NULL, 'Documents', '#', 'fas fa-folder');
+INSERT INTO ref_MenuItems VALUES (901, 'Request Document', 900, 'RequestDocument', '/Employee/Documents/Request', 'fas fa-file-alt');
+
+-- Parent: Company Announcements
+INSERT INTO ref_MenuItems VALUES (1000, 'Company Announcements', NULL, 'Announcements', '#', 'fas fa-bullhorn');
+INSERT INTO ref_MenuItems VALUES (1001, 'View HR Memos', 1000, 'ViewHRMemos', '/Employee/Announcements/HRMemos', 'fas fa-envelope-open');
+INSERT INTO ref_MenuItems VALUES (1002, 'Holiday List', 1000, 'HolidayList', '/Employee/Announcements/Holidays', 'fas fa-calendar');
+INSERT INTO ref_MenuItems VALUES (1003, 'Internal News', 1000, 'InternalNews', '/Employee/Announcements/News', 'fas fa-newspaper');
+
+-- Parent: Supervisor Panel
+INSERT INTO ref_MenuItems VALUES (1100, 'Supervisor Panel', NULL, 'SupervisorPanel', '#', 'fas fa-users-cog');
+INSERT INTO ref_MenuItems VALUES (1101, 'My Team', 1100, 'MyTeam', '/Supervisor/Team', 'fas fa-users');
+INSERT INTO ref_MenuItems VALUES (1102, 'For Approval', 1100, 'ForApproval', '/Supervisor/Approval', 'fas fa-check-square');
+
+-- Parent: HR Management
+INSERT INTO ref_MenuItems VALUES (1200, 'HR Management', NULL, 'HRManagement', '#', 'fas fa-user-shield');
+INSERT INTO ref_MenuItems VALUES (1201, 'Employee Records', 1200, 'EmployeeRecords', '/HR/Employees', 'fas fa-address-book');
+INSERT INTO ref_MenuItems VALUES (1202, 'Attendance Monitoring', 1200, 'AttendanceMonitoring', '/HR/Attendance', 'fas fa-user-clock');
+INSERT INTO ref_MenuItems VALUES (1203, 'Leave Administration', 1200, 'LeaveAdmin', '/HR/LeaveAdmin', 'fas fa-calendar-alt');
+INSERT INTO ref_MenuItems VALUES (1204, 'Payroll Management', 1200, 'PayrollManagement', '/HR/Payroll', 'fas fa-file-invoice');
+INSERT INTO ref_MenuItems VALUES (1205, 'Performance Management', 1200, 'PerformanceManagement', '/HR/Performance', 'fas fa-tasks');
+INSERT INTO ref_MenuItems VALUES (1206, 'HR Requests', 1200, 'HRRequests', '/HR/Requests', 'fas fa-inbox');
+INSERT INTO ref_MenuItems VALUES (1207, 'HR Communications', 1200, 'HRCommunications', '/HR/Communications', 'fas fa-comment');

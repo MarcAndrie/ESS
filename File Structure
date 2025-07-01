@@ -1,0 +1,211 @@
+ESS_WebApp/
+├── 📁 Controllers/
+│   ├── AccountController.cs
+│   ├── DashboardController.cs
+│   ├── EmployeeController.cs
+│   ├── HRController.cs
+│   ├── SupervisorController.cs
+│   ├── LeaveController.cs
+│   ├── OvertimeController.cs
+│   ├── RemoteController.cs
+│   ├── TimeLogController.cs
+│   ├── EvaluationController.cs
+│   └── PayslipController.cs
+│
+├── 📁 Models/
+│   ├── 📁 Database/
+│   │   ├── UserHead.cs
+│   │   ├── UserAccessModule.cs
+│   │   ├── UserLoginHistory.cs
+│   │   ├── UserToken.cs
+│   │   ├── MenuItems.cs
+│   │   ├── LeaveHead.cs
+│   │   ├── LeaveDetails.cs
+│   │   ├── Overtime.cs
+│   │   ├── Remote.cs
+│   │   ├── Requests.cs
+│   │   ├── TimeLogs.cs
+│   │   ├── HREvaluations.cs
+│   │   ├── HREvaluationQuestions.cs
+│   │   ├── HREvaluator.cs
+│   │   ├── HREvaluatorAnswers.cs
+│   │   ├── HREvaluationTandem.cs
+│   │   ├── HREvaluationsResultAction.cs
+│   │   └── HRPayslip.cs
+│   │
+│   ├── 📁 ViewModels/
+│   │   ├── LoginViewModel.cs
+│   │   ├── DashboardViewModel.cs
+│   │   ├── EmployeeDashboardViewModel.cs
+│   │   ├── HRDashboardViewModel.cs
+│   │   ├── SupervisorDashboardViewModel.cs
+│   │   ├── LeaveRequestViewModel.cs
+│   │   ├── OvertimeRequestViewModel.cs
+│   │   ├── RemoteRequestViewModel.cs
+│   │   ├── TimeLogViewModel.cs
+│   │   ├── EvaluationViewModel.cs
+│   │   └── MenuViewModel.cs
+│   │
+│   └── 📁 DTOs/
+│       ├── UserDto.cs
+│       ├── MenuDto.cs
+│       ├── LeaveRequestDto.cs
+│       ├── OvertimeRequestDto.cs
+│       └── DashboardStatsDto.cs
+│
+├── 📁 Data/
+│   ├── ApplicationDbContext.cs
+│   ├── 📁 Repositories/
+│   │   ├── 📁 Interfaces/
+│   │   │   ├── IUserRepository.cs
+│   │   │   ├── IMenuRepository.cs
+│   │   │   ├── ILeaveRepository.cs
+│   │   │   ├── IOvertimeRepository.cs
+│   │   │   ├── IRemoteRepository.cs
+│   │   │   ├── ITimeLogRepository.cs
+│   │   │   ├── IEvaluationRepository.cs
+│   │   │   └── IPayslipRepository.cs
+│   │   │
+│   │   └── 📁 Implementations/
+│   │       ├── UserRepository.cs
+│   │       ├── MenuRepository.cs
+│   │       ├── LeaveRepository.cs
+│   │       ├── OvertimeRepository.cs
+│   │       ├── RemoteRepository.cs
+│   │       ├── TimeLogRepository.cs
+│   │       ├── EvaluationRepository.cs
+│   │       └── PayslipRepository.cs
+│   │
+│   └── 📁 Migrations/
+│       └── (Auto-generated migration files)
+│
+├── 📁 Services/
+│   ├── 📁 Interfaces/
+│   │   ├── IAuthService.cs
+│   │   ├── IMenuService.cs
+│   │   ├── ILeaveService.cs
+│   │   ├── IOvertimeService.cs
+│   │   ├── IRemoteService.cs
+│   │   ├── ITimeLogService.cs
+│   │   ├── IEvaluationService.cs
+│   │   ├── IEmailService.cs
+│   │   └── IFileService.cs
+│   │
+│   └── 📁 Implementations/
+│       ├── AuthService.cs
+│       ├── MenuService.cs
+│       ├── LeaveService.cs
+│       ├── OvertimeService.cs
+│       ├── RemoteService.cs
+│       ├── TimeLogService.cs
+│       ├── EvaluationService.cs
+│       ├── EmailService.cs
+│       └── FileService.cs
+│
+├── 📁 Views/
+│   ├── 📁 Shared/
+│   │   ├── _Layout.cshtml
+│   │   ├── _EmployeeLayout.cshtml
+│   │   ├── _HRLayout.cshtml
+│   │   ├── _SupervisorLayout.cshtml
+│   │   ├── _LoginLayout.cshtml
+│   │   ├── _Sidebar.cshtml
+│   │   ├── _TopBar.cshtml
+│   │   ├── Error.cshtml
+│   │   └── _ViewImports.cshtml
+│   │
+│   ├── 📁 Account/
+│   │   ├── Login.cshtml
+│   │   ├── Logout.cshtml
+│   │   └── AccessDenied.cshtml
+│   │
+│   ├── 📁 Dashboard/
+│   │   ├── Employee.cshtml
+│   │   ├── HR.cshtml
+│   │   └── Supervisor.cshtml
+│   │
+│   ├── 📁 Employee/
+│   │   ├── Profile.cshtml
+│   │   ├── TimeLog.cshtml
+│   │   ├── Payslip.cshtml
+│   │   └── Evaluation.cshtml
+│   │
+│   ├── 📁 Leave/
+│   │   ├── Index.cshtml
+│   │   ├── Create.cshtml
+│   │   ├── Edit.cshtml
+│   │   ├── Details.cshtml
+│   │   └── History.cshtml
+│   │
+│   ├── 📁 Overtime/
+│   │   ├── Index.cshtml
+│   │   ├── Create.cshtml
+│   │   ├── Edit.cshtml
+│   │   └── History.cshtml
+│   │
+│   ├── 📁 Remote/
+│   │   ├── Index.cshtml
+│   │   ├── Create.cshtml
+│   │   ├── Edit.cshtml
+│   │   └── History.cshtml
+│   │
+│   ├── 📁 HR/
+│   │   ├── Dashboard.cshtml
+│   │   ├── Employees.cshtml
+│   │   ├── LeaveApprovals.cshtml
+│   │   ├── OvertimeApprovals.cshtml
+│   │   ├── RemoteApprovals.cshtml
+│   │   ├── Evaluations.cshtml
+│   │   ├── Reports.cshtml
+│   │   └── Settings.cshtml
+│   │
+│   └── 📁 Supervisor/
+│       ├── Dashboard.cshtml
+│       ├── TeamMembers.cshtml
+│       ├── Approvals.cshtml
+│       ├── TeamEvaluations.cshtml
+│       └── Reports.cshtml
+│
+├── 📁 wwwroot/
+│   ├── 📁 css/
+│   │   ├── site.css
+│   │   ├── dashboard.css
+│   │   ├── login.css
+│   │   └── sidebar.css
+│   │   └── custom.css
+│   │
+│   ├── 📁 js/
+│   │   ├── site.js
+│   │   ├── dashboard.js
+│   │   ├── login.js
+│   │   ├── menu.js
+│   │   └── custom.js
+│   │
+│   ├── 📁 images/
+│   │   ├── logo.png
+│   │   ├── default-avatar.png
+│   │   └── backgrounds/
+│   │
+│   └── 📁 lib/
+│       └── (Client-side libraries)
+│
+├── 📁 Helpers/
+│   ├── AuthHelper.cs
+│   ├── MenuHelper.cs
+│   ├── DateHelper.cs
+│   ├── FileHelper.cs
+│   └── ValidationHelper.cs
+│
+├── 📁 Middleware/
+│   ├── AuthenticationMiddleware.cs
+│   └── ErrorHandlingMiddleware.cs
+│
+├── 📁 Attributes/
+│   ├── AuthorizeRoleAttribute.cs
+│   └── ValidateModelAttribute.cs
+│
+├── appsettings.json
+├── appsettings.Development.json
+├── Program.cs
+├── Startup.cs
+└── ESS_WebApp.csproj
